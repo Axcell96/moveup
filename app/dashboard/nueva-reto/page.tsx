@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 export default function NuevoRetoPage() {
-    // Server Action definida DENTRO del componente
     async function crearReto(formData: FormData) {
         "use server"
 
@@ -30,45 +29,45 @@ export default function NuevoRetoPage() {
     }
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-4 py-10 bg-slate-950">
-            <div className="w-full max-w-2xl bg-slate-800 rounded-2xl p-8 shadow-xl">
-                <h1 className="text-2xl font-bold text-white mb-1">
+        <section className="min-h-screen flex items-center justify-center px-4 py-10">
+            <div className="w-full max-w-2xl bg-gym-card rounded-2xl p-8 shadow-xl border border-gym-green/20">
+                <h1 className="text-2xl font-bold text-foreground mb-1">
                     Publicar nuevo reto
                 </h1>
-                <p className="text-slate-400 mb-8">
+                <p className="text-foreground/60 mb-8">
                     Completa los detalles para que los atletas puedan unirse
                 </p>
 
                 <form action={crearReto} className="flex flex-col gap-6">
                     <div>
-                        <label className="block text-slate-300 text-sm font-semibold mb-2">
+                        <label className="block text-foreground/80 text-sm font-semibold mb-2">
                             Título
                         </label>
                         <input name="titulo" placeholder="Ej: 21 días de cardio en casa"
                             required
-                            className="w-full bg-slate-700 text-white rounded-lg px-4 py-3.5 text-base
-                                border border-slate-600 focus:outline-none focus:border-blue-500" />
+                            className="w-full bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3.5 text-base
+                                border border-gym-green/30 focus:outline-none focus:border-gym-neon" />
                     </div>
 
                     <div>
-                        <label className="block text-slate-300 text-sm font-semibold mb-2">
+                        <label className="block text-foreground/80 text-sm font-semibold mb-2">
                             Descripción
                         </label>
                         <textarea name="descripcion"
                             placeholder="Explica en qué consiste el reto, la rutina a seguir, reglas, nivel recomendado..."
                             rows={7}
-                            className="w-full bg-slate-700 text-white rounded-lg px-4 py-3.5 text-base
-                                border border-slate-600 focus:outline-none focus:border-blue-500 resize-y" />
+                            className="w-full bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3.5 text-base
+                                border border-gym-green/30 focus:outline-none focus:border-gym-neon resize-y" />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label className="block text-slate-300 text-sm font-semibold mb-2">
+                            <label className="block text-foreground/80 text-sm font-semibold mb-2">
                                 Tipo
                             </label>
                             <select name="tipo"
-                                className="w-full bg-slate-700 text-white rounded-lg px-4 py-3.5 text-base
-                                    border border-slate-600 focus:outline-none focus:border-blue-500">
+                                className="w-full bg-black/40 text-foreground rounded-lg px-4 py-3.5 text-base
+                                    border border-gym-green/30 focus:outline-none focus:border-gym-neon">
                                 <option value="Cardio">Cardio</option>
                                 <option value="Fuerza">Fuerza</option>
                                 <option value="Flexibilidad">Flexibilidad</option>
@@ -77,19 +76,19 @@ export default function NuevoRetoPage() {
                         </div>
 
                         <div>
-                            <label className="block text-slate-300 text-sm font-semibold mb-2">
+                            <label className="block text-foreground/80 text-sm font-semibold mb-2">
                                 Duración (días)
                             </label>
                             <input name="duracion_dias" type="number"
                                 defaultValue={7} min={1}
-                                className="w-full bg-slate-700 text-white rounded-lg px-4 py-3.5 text-base
-                                    border border-slate-600 focus:outline-none focus:border-blue-500" />
+                                className="w-full bg-black/40 text-foreground rounded-lg px-4 py-3.5 text-base
+                                    border border-gym-green/30 focus:outline-none focus:border-gym-neon" />
                         </div>
                     </div>
 
                     <button type="submit"
-                        className="bg-blue-500 hover:bg-blue-600
-                            text-white font-semibold py-3.5 text-base
+                        className="bg-gym-neon hover:bg-gym-green
+                            text-black font-bold uppercase tracking-wide py-3.5 text-base
                             rounded-lg transition-colors mt-2">
                         Publicar reto
                     </button>
