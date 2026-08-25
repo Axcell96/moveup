@@ -6,12 +6,12 @@ import Link from "next/link"
 
 const supabase = createClient()
 
-export default function LoginPage(){
+export default function LoginPage() {
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState ('')
+    const [password, setPassword] = useState('')
     const [error, setError] = useState<string | null>(null)
     const router = useRouter()
-    
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
         setError(null)
@@ -26,13 +26,13 @@ export default function LoginPage(){
         router.refresh()
     }
 
-        return (
-        <section className="min-h-screen flex items-center justify-center px-4 bg-slate-950">
-            <div className="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-xl">
-                <h1 className="text-2xl font-bold text-white mb-2">
+    return (
+        <section className="min-h-screen flex items-center justify-center px-4">
+            <div className="w-full max-w-md bg-gym-card rounded-2xl p-8 shadow-xl border border-gym-green/20">
+                <h1 className="text-2xl font-bold text-foreground mb-2">
                     Iniciar sesión
                 </h1>
-                <p className="text-slate-400 mb-8">
+                <p className="text-foreground/60 mb-8">
                     Accede a tu cuenta de MoveUp
                 </p>
                 {error && (
@@ -45,24 +45,24 @@ export default function LoginPage(){
                         type="email"
                         placeholder="correo@ejemplo.com"
                         value={email} onChange={e => setEmail(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     />
                     <input
                         type="password"
                         placeholder="Contraseña"
                         value={password} onChange={e => setPassword(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     />
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors"
+                        className="bg-gym-neon hover:bg-gym-green text-black font-bold uppercase tracking-wide py-3 rounded-lg transition-colors"
                     >
                         Iniciar sesión
                     </button>
                 </form>
-                <p className="text-slate-400 text-center mt-6">
+                <p className="text-foreground/60 text-center mt-6">
                     ¿No tienes cuenta?{" "}
-                    <Link href="/register" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    <Link href="/register" className="text-gym-neon hover:text-gym-green font-semibold">
                         Regístrate
                     </Link>
                 </p>

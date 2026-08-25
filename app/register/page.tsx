@@ -28,12 +28,12 @@ export default function RegisterPage() {
     }
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-4 bg-slate-950">
-            <div className="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-xl">
-                <h1 className="text-2xl font-bold text-white mb-2">
+        <section className="min-h-screen flex items-center justify-center px-4">
+            <div className="w-full max-w-md bg-gym-card rounded-2xl p-8 shadow-xl border border-gym-green/20">
+                <h1 className="text-2xl font-bold text-foreground mb-2">
                     Crear cuenta
                 </h1>
-                <p className="text-slate-400 mb-8">
+                <p className="text-foreground/60 mb-8">
                     Únete a MoveUp
                 </p>
                 {error && (
@@ -46,31 +46,31 @@ export default function RegisterPage() {
                         type="text"
                         placeholder="Nombre completo"
                         value={fullName} onChange={e => setFullName(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     />
                     <input
                         type="email"
                         placeholder="correo@ejemplo.com"
                         value={email} onChange={e => setEmail(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     />
                     <input
                         type="password"
                         placeholder="Contraseña"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     />
                     <select
                         value={role} onChange={e => setRole(e.target.value)}
-                        className="bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:outline-none focus:border-blue-500"
+                        className="bg-black/40 text-foreground rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
                     >
                         <option value="atleta">Atleta</option>
                         <option value="coach">Coach</option>
                     </select>
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors"
+                        className="bg-gym-neon hover:bg-gym-green text-black font-bold uppercase tracking-wide py-3 rounded-lg transition-colors"
                     >
                         Registrarme
                     </button>
