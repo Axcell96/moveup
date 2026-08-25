@@ -8,20 +8,34 @@ export default function NuevoRetoPage() {
 
         const supabase = await createClient()
         const { data: { user } } = await supabase.auth.getUser()
+        
         if (!user) redirect('/login')
+        
+        const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
+
+        if (profile?.role !== 'coach') redirect('/dashboard')
 
         const titulo = formData.get('titulo') as string
         const descripcion = formData.get('descripcion') as string
         const tipo = formData.get('tipo') as string
         const duracionDias = Number(formData.get('duracion_dias'))
 
-        await supabase.from('retos').insert({
-            coach_id: user!.id,
+        
+        const { error } = await supabase.from('retos').insert({
+            coach_id: user.id,
             titulo,
             descripcion,
             tipo,
             duracion_dias: duracionDias,
         })
+
+        if (error) {
+          throw new Error(error.message)
+        }
 
         revalidatePath('/retos')
         revalidatePath('/dashboard')

@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 interface AtletaDashboardProps {
     profile: {full_name: string | null}
     totalParticipaciones: number
@@ -18,10 +20,11 @@ export default function AtletaDashboard({
                     <p className="text-foreground/60 text-sm mb-1">Mis retos activos</p>
                     <p className="text-3xl font-bold text-gym-neon">{totalParticipaciones}</p>
                 </div>
-                <div className="bg-gym-card rounded-xl p-6 border border-gym-green/20">
+                <Link href="/dashboard/mis-retos"
+                    className="bg-gym-card rounded-xl p-6 border border-gym-green/20 hover:border-gym-neon transition-colors block">
                     <p className="text-foreground/60 text-sm mb-1">Retos completados</p>
                     <p className="text-3xl font-bold text-gym-neon">0</p>
-                </div>
+                </Link>
             </div>
         </main>
     )
