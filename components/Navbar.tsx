@@ -24,38 +24,38 @@ export default async function Navbar() {
     }
 
     return (
-        <nav className="bg-slate-900 border-b border-slate-700 px-6 py-4 flex justify-between items-center">
-            <Link href="/" className="text-xl font-bold text-white hover:text-blue-400 transition-colors">
-                MoveUp
+        <nav className="bg-black border-b border-gym-green/20 px-6 py-4 flex justify-between items-center">
+            <Link href="/" className="text-xl font-bold text-gym-neon tracking-wide hover:text-gym-green transition-colors">
+                MOVEUP
             </Link>
 
             <div className="flex items-center gap-6">
-                <Link href="/" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/" className="text-foreground/70 hover:text-gym-neon transition-colors">
                     Inicio
                 </Link>
-                <Link href="/retos" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/retos" className="text-foreground/70 hover:text-gym-neon transition-colors">
                     Retos
                 </Link>
-                <Link href="/dashboard" className="text-slate-400 hover:text-white transition-colors">
+                <Link href="/dashboard" className="text-foreground/70 hover:text-gym-neon transition-colors">
                     Dashboard
                 </Link>
 
                 {user ? (
                     <div className="flex items-center gap-4">
-                        <span className="text-slate-300 text-sm">
+                        <span className="text-foreground/80 text-sm">
                             {fullName ?? user.email}
                         </span>
                         <form action={signOut}>
                             <button
                                 type="submit"
-                                className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors"
+                                className="bg-gym-card hover:bg-gym-card/70 text-foreground font-semibold px-4 py-2 rounded-lg border border-gym-green/30 transition-colors"
                             >
                                 Cerrar sesión
                             </button>
                         </form>
                     </div>
                 ) : (
-                    <Link href="/login" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+                    <Link href="/login" className="bg-gym-neon hover:bg-gym-green text-black font-bold px-4 py-2 rounded-lg transition-colors">
                         Login
                     </Link>
                 )}
