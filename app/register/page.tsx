@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import { createClient } from "@/lib/supabase"
-import { useRouter } from "next/navigation"
 
 const supabase = createClient()
 
@@ -11,7 +10,7 @@ export default function RegisterPage() {
     const [fullName, setFullName] = useState('')
     const [role, setRole] = useState('atleta')
     const [error, setError] = useState<string | null>(null)
-    const router = useRouter()
+    const [success, setSuccess] = useState(false)
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -24,7 +23,11 @@ export default function RegisterPage() {
             setError(error.message)
             return
         }
-        router.push('/login')
+        setSuccess(true)
+        setTimeout(() => {
+            // eslint-disable-next-line
+            window.location.href = '/'
+        }, 1800)
     }
 
     return (
@@ -41,40 +44,46 @@ export default function RegisterPage() {
                         {error}
                     </p>
                 )}
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    <input
-                        type="text"
-                        placeholder="Nombre completo"
-                        value={fullName} onChange={e => setFullName(e.target.value)}
-                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
-                    />
-                    <input
-                        type="email"
-                        placeholder="correo@ejemplo.com"
-                        value={email} onChange={e => setEmail(e.target.value)}
-                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
-                    />
-                    <select
-                        value={role} onChange={e => setRole(e.target.value)}
-                        className="bg-black/40 text-foreground rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
-                    >
-                        <option value="atleta">Atleta</option>
-                        <option value="coach">Coach</option>
-                    </select>
-                    <button
-                        type="submit"
-                        className="bg-gym-neon hover:bg-gym-green text-black font-bold uppercase tracking-wide py-3 rounded-lg transition-colors"
-                    >
-                        Registrarme
-                    </button>
-                </form>
+                {success ? (
+                    <p className="bg-gym-green/10 border border-gym-green/50 text-gym-green text-sm rounded-lg px-4 py-4 text-center">
+                        ¡Cuenta creada correctamente! Redirigiendo al inicio...
+                    </p>
+                ) : (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        <input
+                            type="text"
+                            placeholder="Nombre completo"
+                            value={fullName} onChange={e => setFullName(e.target.value)}
+                            className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
+                        />
+                        <input
+                            type="email"
+                            placeholder="correo@ejemplo.com"
+                            value={email} onChange={e => setEmail(e.target.value)}
+                            className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            className="bg-black/40 text-foreground placeholder:text-foreground/40 rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
+                        />
+                        <select
+                            value={role} onChange={e => setRole(e.target.value)}
+                            className="bg-black/40 text-foreground rounded-lg px-4 py-3 border border-gym-green/30 focus:outline-none focus:border-gym-neon"
+                        >
+                            <option value="atleta">Atleta</option>
+                            <option value="coach">Coach</option>
+                        </select>
+                        <button
+                            type="submit"
+                            className="bg-gym-neon hover:bg-gym-green text-black font-bold uppercase tracking-wide py-3 rounded-lg transition-colors"
+                        >
+                            Registrarme
+                        </button>
+                    </form>
+                )}
             </div>
         </section>
     )

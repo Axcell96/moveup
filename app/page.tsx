@@ -1,11 +1,15 @@
 import Link from "next/link"
+import { createClient } from "@/lib/supabase-server"
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <main className="relative min-h-screen flex items-center justify-center px-6 py-20">
-    <div className="fixed inset-0 -z-10 bg-[url('/fondo-inicio.png')] bg-cover bg-center bg-no-repeat" />
-    <div className="fixed inset-0 -z-10 bg-black/70" />
-    <div className="max-w-3xl text-center relative z-10">
+      <div className="fixed inset-0 -z-10 bg-[url('/fondo-inicio.png')] bg-cover bg-center bg-no-repeat" />
+      <div className="fixed inset-0 -z-10 bg-black/70" />
+      <div className="max-w-3xl text-center relative z-10">
         <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-gym-neon/15 text-gym-neon uppercase tracking-wide mb-6">
           Comunidad fitness
         </span>
@@ -29,12 +33,21 @@ export default function Home() {
           >
             Ver retos
           </Link>
-          <Link
-            href="/register"
-            className="border border-gym-green/40 hover:border-gym-neon text-foreground font-bold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors"
-          >
-            Crear cuenta
-          </Link>
+          {user ? (
+            <Link
+              href="/dashboard"
+              className="border border-gym-green/40 hover:border-gym-neon text-foreground font-bold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors"
+            >
+              Ir a mi panel
+            </Link>
+          ) : (
+            <Link
+              href="/register"
+              className="border border-gym-green/40 hover:border-gym-neon text-foreground font-bold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors"
+            >
+              Crear cuenta
+            </Link>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
