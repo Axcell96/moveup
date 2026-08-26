@@ -37,7 +37,7 @@ export default async function Navbar() {
                     Retos
                 </Link>
                 <Link href="/dashboard" className="text-foreground/70 hover:text-gym-neon transition-colors">
-                    Dashboard
+                    Mi panel
                 </Link>
 
                 {user ? (

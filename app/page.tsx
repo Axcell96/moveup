@@ -1,69 +1,57 @@
-import Image from "next/image";
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen flex items-center justify-center px-6 py-20">
+    <div className="fixed inset-0 -z-10 bg-[url('/fondo-inicio.png')] bg-cover bg-center bg-no-repeat" />
+    <div className="fixed inset-0 -z-10 bg-black/70" />
+    <div className="max-w-3xl text-center relative z-10">
+        <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-gym-neon/15 text-gym-neon uppercase tracking-wide mb-6">
+          Comunidad fitness
+        </span>
+
+        <h1 className="text-5xl sm:text-6xl font-bold mb-4 tracking-tight">
+          <span className="text-foreground">MOVE</span>
+          <span className="text-gym-neon">UP</span>
+        </h1>
+
+        <p className="text-xl text-foreground/80 mb-2">
+          Retos de entrenamiento con comunidad.
+        </p>
+        <p className="text-foreground/60 mb-10 max-w-lg mx-auto">
+          Únete a los retos que publican los coaches, entrena a tu ritmo y sigue tu progreso junto a otros atletas.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <Link
+            href="/retos"
+            className="bg-gym-neon hover:bg-gym-green text-black font-bold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Ver retos
+          </Link>
+          <Link
+            href="/register"
+            className="border border-gym-green/40 hover:border-gym-neon text-foreground font-bold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors"
           >
-            Documentation
-          </a>
+            Crear cuenta
+          </Link>
         </div>
-      </main>
-    </div>
-  );
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          <div className="bg-gym-card rounded-xl p-5 border border-gym-green/20">
+            <p className="text-gym-neon font-bold mb-1">Retos variados</p>
+            <p className="text-foreground/60 text-sm">Cardio, fuerza, flexibilidad y resistencia, publicados por coaches reales.</p>
+          </div>
+          <div className="bg-gym-card rounded-xl p-5 border border-gym-green/20">
+            <p className="text-gym-neon font-bold mb-1">Comunidad</p>
+            <p className="text-foreground/60 text-sm">Entrena junto a otros atletas unidos al mismo reto que tú.</p>
+          </div>
+          <div className="bg-gym-card rounded-xl p-5 border border-gym-green/20">
+            <p className="text-gym-neon font-bold mb-1">Tu progreso</p>
+            <p className="text-foreground/60 text-sm">Sigue tus retos activos y tu historial desde tu dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  )
 }
