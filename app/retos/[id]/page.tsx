@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase-server"
 import { revalidatePath } from "next/cache"
 import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
+import { buscarEjerciciosWger } from "@/lib/wger"
 
 interface RetoDetailPageProps {
     params: Promise<{ id: string }>
@@ -18,6 +19,8 @@ export default async function RetoDetailPage({ params }: RetoDetailPageProps) {
         .single()
 
     if (!reto) notFound()
+
+    const {ejercicios, error: errorEjercicios} = await buscarEjerciciosWger (reto.tipo)
 
     const { data: { user } } = await supabase.auth.getUser()
 
@@ -80,6 +83,23 @@ export default async function RetoDetailPage({ params }: RetoDetailPageProps) {
                 {reto.descripcion && (
                     <p className="text-foreground/80 mb-6 leading-relaxed whitespace-pre-line">{reto.descripcion}</p>
                 )}
+
+                <div className="mt-8 pt-6 border-t border-gym-green/20">
+                    <h2 className="text-lg font-bold text-foreground mb-3">Ejercicios sugeridos</h2>
+                    {errorEjercicios ? (
+                        <p className="text-foreground/50 text-sm">No pudimos cargar sugerencias de ejercicios en este momento.</p>
+                    ) : ejercicios.length === 0 ? (
+                        <p className="text-foreground/50 text-sm">No encontramos ejercicios sugeridos para este tipo de reto.</p>
+                    ) : (
+                        <ul className="flex flex-col gap-2">
+                            {ejercicios.map((ej, i) => (
+                                <li key={i} className="bg-black/30 rounded-lg px-4 py-2.5 text-sm text-foreground/80">
+                                    {ej.nombre}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 {esAtleta && (
                     yaParticipa ? (
