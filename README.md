@@ -7,6 +7,12 @@ Proyecto Integrador — Aplicaciones Web, Instituto Axcell.
 **Demo en producción:** https://moveup-gold.vercel.app
 **Repositorio:** https://github.com/Axcell96/moveup
 
+## Capturas de pantalla
+
+| Inicio | Listado de retos | Dashboard (coach) |
+|---|---|---|
+| ![Pantalla de inicio](./screenshots/inicio.png) | ![Listado de retos](./screenshots/retos.png) | ![Dashboard](./screenshots/dashboard.png) |
+
 ## Roles
 
 - **atleta** — se une a retos, ve sus retos activos en su dashboard.
@@ -14,16 +20,24 @@ Proyecto Integrador — Aplicaciones Web, Instituto Axcell.
 
 El rol se guarda en la base de datos (tabla `profiles`), no está hardcodeado en el frontend.
 
-## Funcionalidades principales
+## Funcionalidades (checklist de requisitos)
 
-- Registro e inicio de sesión con Supabase Auth.
-- Roles diferenciados con dashboards distintos para atleta y coach.
-- CRUD completo de retos: crear, listar, ver detalle, editar y eliminar (solo el coach dueño del reto puede editarlo o eliminarlo).
-- Los atletas pueden unirse a un reto y ver los retos a los que ya están unidos.
-- Los coaches pueden ver la lista de atletas participantes en cada uno de sus retos.
-- Búsqueda de retos por texto en `/retos` (componente interactivo con `useState`).
-- Sugerencia de ejercicios relacionados con el tipo de reto, obtenidos en tiempo real desde la API pública de [wger.de](https://wger.de/api/v2/) mediante `fetch` + `async/await`, con manejo de errores de red y de la API.
-- Row Level Security (RLS) activado en Supabase para las tres tablas principales.
+- [x] Mínimo 2 roles de usuario (`atleta`, `coach`), guardados en base de datos.
+- [x] 2+ rutas públicas (`/`, `/retos`, `/retos/[id]`).
+- [x] 2+ rutas privadas (`/dashboard`, `/dashboard/mis-retos`, `/dashboard/nueva-reto`).
+- [x] 1+ ruta dinámica (`/retos/[id]`).
+- [x] Autenticación real con Supabase Auth (registro, login, logout, protección de rutas privadas con middleware).
+- [x] 3+ tablas relacionadas con llaves foráneas (`profiles`, `retos`, `participaciones`).
+- [x] Tabla que extiende `auth.users` (`profiles`, relación 1:1).
+- [x] Relación uno-a-muchos (`coach` → `retos`) y muchos-a-muchos (`atletas` ↔ `retos` vía `participaciones`).
+- [x] Row Level Security (RLS) activado en las tres tablas principales.
+- [x] CRUD completo de retos: crear, listar, ver detalle, editar y eliminar (solo el coach dueño del reto puede editarlo o eliminarlo; validado en el servidor).
+- [x] Los atletas pueden unirse a un reto y ver los retos a los que ya están unidos.
+- [x] Los coaches pueden ver la lista de atletas participantes en cada uno de sus retos.
+- [x] Componente interactivo con `useState`: búsqueda de retos por texto en `/retos`.
+- [x] Consumo de API externa con `fetch` + `async/await` y manejo de errores: sugerencia de ejercicios desde [wger.de](https://wger.de/api/v2/) según el tipo de reto.
+- [x] Despliegue en Vercel.
+- [x] README completo.
 
 ## Rutas
 
@@ -56,10 +70,12 @@ auth.users (Supabase Auth)
 
 ## Stack técnico
 
+<!-- TODO: confirma la versión exacta de cada paquete abriendo tu package.json (o corriendo `npm list next react tailwindcss` en la raíz del proyecto) y reemplaza los números de abajo si no coinciden. Puse Next.js 15 como valor tentativo. -->
+
 - **Frontend / Backend:** Next.js 15 (App Router), React, TypeScript
 - **Estilos:** Tailwind CSS
 - **Base de datos y autenticación:** Supabase (PostgreSQL + Auth + RLS)
-- **API externa:** [wger.de API v2](https://wger.de/api/v2/) — catálogo de ejercicios
+- **API externa:** [wger.de API v2](https://wger.de/es/exercise/overview/) — catálogo de ejercicios
 - **Despliegue:** Vercel
 
 ## Correr el proyecto localmente
@@ -92,7 +108,32 @@ auth.users (Supabase Auth)
 
 5. Abrir [http://localhost:3000](http://localhost:3000).
 
+## Credenciales de prueba
+
+Cuentas dedicadas para que el docente pueda entrar sin registrarse:
+
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Coach | `apad@test.com` | `Admin123` |
+| Atleta | `jpaz@test.com` | `Admin123` |
+
+## Autor
+
+**Axcell Padilla**
+GitHub: [@Axcell96](https://github.com/Axcell96)
+
+
 ## Notas
 
 - La API de wger.de es una fuente de datos externa e independiente de Supabase (Supabase almacena usuarios, retos y participaciones; wger.de solo aporta el catálogo de ejercicios sugeridos).
 - El archivo `.env.local` no se sube al repositorio (está en `.gitignore`); en producción, las variables de entorno se configuran directamente en Vercel.
+
+## Video de defensa
+
+[Ver video de defensa (Exm_2P_APadilla.mp4)](https://ister-my.sharepoint.com/:v:/g/personal/axcell_padilla_ister_edu_ec/IQDmPPvsNRc1Sb5C1JttZxX2AXWdBTj0WBUba4rtUvq8rQQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=FIXl4H)
+
+## Codigo VSCode
+https://ister-my.sharepoint.com/:u:/g/personal/axcell_padilla_ister_edu_ec/IQC6xaFAWUgrTawLNrLzittKAT_OLsDpiopJImsgw3ccd-M?e=lxHHVn
+
+## Vercel
+https://moveup-gold.vercel.app/
