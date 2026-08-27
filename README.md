@@ -2,7 +2,7 @@
 
 Aplicación web de retos de entrenamiento con comunidad. Un `coach` publica retos de ejercicio y un `atleta` se une a los retos que le interesan, sigue su progreso y entrena junto a otros usuarios.
 
-Proyecto Integrador — Aplicaciones Web, Instituto Axcell.
+Proyecto Integrador — Aplicaciones Web.
 
 **Demo en producción:** https://moveup-gold.vercel.app
 **Repositorio:** https://github.com/Axcell96/moveup
